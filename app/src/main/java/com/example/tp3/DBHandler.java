@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;// Database version
+    private static final int DATABASE_VERSION = 5;// Database version
     private static final String DATABASE_NAME = "dbtp";// Name of the data base
     // the constructor to create the database with a defined version and name
     public DBHandler(Context context) {
@@ -16,7 +16,7 @@ public class DBHandler extends SQLiteOpenHelper {
     //In the onCreate method, we create the tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE = "CREATE TABLE etudiant(_id INTEGER, matricule INT PRIMARY KEY, nom TEXT, prenom TEXT)";
+        String CREATE_TABLE = "CREATE TABLE etudiant(_id INTEGER, matricule TEXT PRIMARY KEY, nom TEXT, prenom TEXT, photo BLOB)";
         db.execSQL(CREATE_TABLE);
     }
     // The onUpgrade method allows you to update the database
@@ -32,6 +32,7 @@ public class DBHandler extends SQLiteOpenHelper {
         val.put("matricule",s.matricule);
         val.put("nom",s.nom);
         val.put("prenom",s.prenom);
+        val.put("photo",s.photo);
         db.insert("etudiant",null,val);
         db.close();
     }
@@ -42,7 +43,7 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor.getCount()==0)
             return null;
         cursor.moveToFirst();
-        Student e = new Student(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
+        Student e = new Student(cursor.getString(1), cursor.getString(2), cursor.getString(3),cursor.getBlob(4));
         cursor.close();
         return e;
     }
@@ -55,7 +56,9 @@ public class DBHandler extends SQLiteOpenHelper {
         db.update("etudiant",val,"matricule=?",new String[]{String.valueOf(s.matricule)});
     }
 
-    public void deleteStudent(Student s){
+    public void deleteStudent(String matricule){
+        SQLiteDatabase db=this.getWritableDatabase();
+        db.delete("etudiant","matricule=?",new String[]{String.valueOf(matricule)});
 
     }
 

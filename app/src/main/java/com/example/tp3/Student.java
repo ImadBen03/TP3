@@ -1,12 +1,19 @@
 package com.example.tp3;
 
 public class Student {
-    int matricule;
-    String nom,prenom;
+    byte[] photo;
+    String matricule,nom,prenom;
 
-    public Student(int matricule, String nom, String prenom){
+    public Student(String matricule, String nom, String prenom,byte[] photo){
+        this.matricule=matricule;
+        this.nom=nom;
+        this.prenom=prenom;
+        this.photo=photo;
+    }
+    public Student(String matricule, String nom, String prenom){
         this.matricule=matricule;
         this.nom=nom;
         this.prenom=prenom;
     }
+
 }

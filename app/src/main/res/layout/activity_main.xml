@@ -17,6 +17,7 @@
 
     <EditText
         android:id="@+id/e1"
+        android:inputType="text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/t1"
@@ -34,6 +35,7 @@
 
     <EditText
         android:id="@+id/e2"
+        android:inputType="textPersonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/e1"
@@ -50,6 +52,7 @@
 
     <EditText
         android:id="@+id/e3"
+        android:inputType="textPersonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/t3"
@@ -57,10 +60,37 @@
         android:layout_alignParentEnd="true"
         android:layout_alignStart="@+id/e2"/>
 
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/camera"
+        android:layout_alignBottom="@+id/gallery"
+        android:layout_toStartOf="@+id/camera"/>
+
+
+    <Button
+        android:id="@+id/camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/e3"
+        android:layout_centerHorizontal="true"
+        android:text="Camera"
+        app:icon="@android:drawable/ic_menu_camera"/>
+
+    <Button
+        android:id="@+id/gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/camera"
+        android:layout_centerHorizontal="true"
+        android:text="Gallery"
+        app:icon="@android:drawable/ic_menu_gallery"/>
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/e3">
+        android:layout_below="@id/gallery">
 
         <TableRow
             android:layout_height="wrap_content"
@@ -73,10 +103,12 @@
                 android:layout_width="wrap_content"
                 android:text="Ajouter"/>
             <Button
+                android:id="@+id/supprimer"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="Supprimer"/>
             <Button
+                android:id="@+id/chercher"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="Chercher"/>
@@ -89,12 +121,13 @@
             android:gravity="center">
 
             <Button
+                android:id="@+id/modifier"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="Modifier"
                 android:layout_weight="1"/>
             <Button
-                android:id="@+id/at"
+                android:id="@+id/afficher"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="Afficher Tous"
@@ -104,6 +137,7 @@
 
 
     </TableLayout>
+
 
 
 </RelativeLayout>
